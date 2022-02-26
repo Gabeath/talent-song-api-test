@@ -18,6 +18,4 @@ build/
 ## MAC
 .DS_Store
 
-.env
-
 *.pdf

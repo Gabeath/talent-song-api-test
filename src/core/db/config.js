@@ -1,3 +1,5 @@
+require('@babel/register');
+
 const Constants = require('../utilities/constants').default;
 
 module.exports = {
@@ -7,4 +9,10 @@ module.exports = {
   database: Constants.database.name,
   host: Constants.database.host,
   dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 };
