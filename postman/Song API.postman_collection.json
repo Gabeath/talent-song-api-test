@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "33962e8e-5865-4e6e-9eb5-d2e2ac8ad31e",
+		"name": "Song API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Favorite Song",
+			"item": [
+				{
+					"name": "Create Favorite Song",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"album\": \"ANTI\",\r\n    \"artist\": \"Rihanna\",\r\n    \"songName\": \"Work\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/favorite-songs",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"favorite-songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mine Favorites",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/favorite-songs",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"favorite-songs"
+							],
+							"query": [
+								{
+									"key": "artist",
+									"value": "rihanna",
+									"disabled": true
+								},
+								{
+									"key": "album",
+									"value": "anti",
+									"disabled": true
+								},
+								{
+									"key": "songName",
+									"value": "work",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Favorite Song By Favorite Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"album\": \"ANTI\",\r\n    \"artist\": \"Rihanna\",\r\n    \"songName\": \"Work\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/favorite-songs/:favoriteId",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"favorite-songs",
+								":favoriteId"
+							],
+							"variable": [
+								{
+									"key": "favoriteId",
+									"value": "1d70fdf1-000e-4b68-ba0d-de0718fcde07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Favorite Song By Favorite Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/favorite-songs/:favoriteId",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"favorite-songs",
+								":favoriteId"
+							],
+							"variable": [
+								{
+									"key": "favoriteId",
+									"value": "fdb42121-7047-48a7-915d-5bd7f48806e3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", response.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabrielzambuzi7@gmail.com\",\r\n    \"password\": \"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/login",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"token\", response.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabrielzambuzi7@gmail.com\",\r\n    \"password\": \"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/user",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_local}}/api/status",
+					"host": [
+						"{{base_url_local}}"
+					],
+					"path": [
+						"api",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
