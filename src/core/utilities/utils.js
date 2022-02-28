@@ -1,8 +1,8 @@
 import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
 
 import Constants from '@utilities/constants';
 
-// eslint-disable-next-line import/prefer-default-export
 export function cryptPassword(password) {
   return crypto.pbkdf2Sync(
     password,
@@ -11,4 +11,14 @@ export function cryptPassword(password) {
     Constants.password.keylen,
     Constants.password.digest,
   ).toString('hex');
+}
+
+export function generateJWT(payload) {
+  return jwt.sign(payload, Constants.jwtSecret, {
+    expiresIn: '5h',
+  });
+}
+
+export function verifyToken(token) {
+  return jwt.verify(token, Constants.jwtSecret);
 }

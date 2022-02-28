@@ -1,7 +1,7 @@
 import UserRepository from '@db/repositories/user';
 
 import BusinessError, { UserCodeError } from '@utilities/errors/business';
-import { cryptPassword } from '@utilities/utils';
+import { cryptPassword, generateJWT } from '@utilities/utils';
 
 export default class UserService {
   static async create(user) {
@@ -17,10 +17,14 @@ export default class UserService {
 
     const passwordEncrypted = cryptPassword(user.password);
 
-    response = await UserRepository.create({
+    const userCreated = await UserRepository.create({
       email: user.email,
       password: passwordEncrypted,
     });
+
+    response = {
+      token: generateJWT({ userId: userCreated.userId }),
+    };
 
     return response;
   }

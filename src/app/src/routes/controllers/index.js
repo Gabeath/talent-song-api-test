@@ -9,6 +9,7 @@ router.get('/status', (req, res) => res.json({
   uptime: startedAt.fromNow(),
 }));
 
+router.use('/login', require('./login').default);
 router.use('/user', require('./user').default);
 
 export default router;

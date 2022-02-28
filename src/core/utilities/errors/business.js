@@ -14,4 +14,5 @@ export const ValidationCodeError = {
 
 export const UserCodeError = {
   EMAIL_ALREADY_REGISTERED: 'email_already_registered',
+  USER_NOT_FOUND: 'user_not_found',
 };

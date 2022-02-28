@@ -22,4 +22,6 @@ export default class Constants {
     keylen: Number(process.env.SECRET_KEY_LEN),
     digest: 'SHA256',
   };
+
+  static jwtSecret = process.env.JWT_SECRET;
 }
