@@ -8,6 +8,10 @@ export default class BusinessError extends ExtendableError {
   }
 }
 
+export const FavoriteSongCodeError = {
+  SONG_ALREADY_REGISTERED: 'song_already_registered',
+};
+
 export const ValidationCodeError = {
   INVALID_ID: 'invalid_id',
 };
