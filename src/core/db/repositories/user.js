@@ -56,11 +56,11 @@ export default class UserRepository {
     return response;
   }
 
-  static async updateById(id, user, options) {
+  static async updateById(userId, user, options) {
     let response = null;
     try {
       response = await UserEntity.update(user, {
-        where: { id },
+        where: { userId },
         transaction: options ? options.transaction : null,
         returning: true,
       });
@@ -71,11 +71,11 @@ export default class UserRepository {
     return response;
   }
 
-  static async deleteById(id, options) {
+  static async deleteById(userId, options) {
     let response = null;
     try {
       response = await UserEntity.destroy({
-        where: { id },
+        where: { userId },
         transaction: options ? options.transaction : null,
       });
     } catch (err) {

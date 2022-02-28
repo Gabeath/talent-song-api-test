@@ -56,11 +56,11 @@ export default class FavoriteSongRepository {
     return response;
   }
 
-  static async updateById(id, user, options) {
+  static async updateById(favoriteId, user, options) {
     let response = null;
     try {
       response = await FavoriteSongEntity.update(user, {
-        where: { id },
+        where: { favoriteId },
         transaction: options ? options.transaction : null,
         returning: true,
       });
@@ -71,11 +71,11 @@ export default class FavoriteSongRepository {
     return response;
   }
 
-  static async deleteById(id, options) {
+  static async deleteById(favoriteId, options) {
     let response = null;
     try {
       response = await FavoriteSongEntity.destroy({
-        where: { id },
+        where: { favoriteId },
         transaction: options ? options.transaction : null,
       });
     } catch (err) {

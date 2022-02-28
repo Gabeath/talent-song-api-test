@@ -2,7 +2,7 @@ import { Op } from 'sequelize';
 
 import FavoriteSongRepository from '@db/repositories/favorite-song';
 
-import BusinessError, { FavoriteSongCodeError } from '@utilities/errors/business';
+import BusinessError, { FavoriteSongCodeError, ValidationCodeError } from '@utilities/errors/business';
 
 export default class FavoriteSongService {
   static async create(favoriteSong, userId) {
@@ -57,5 +57,49 @@ export default class FavoriteSongService {
     });
 
     return response;
+  }
+
+  static async updateById(favoriteId, favoriteSong, userId) {
+    let response = null;
+
+    if (!favoriteSong.songName
+      && !favoriteSong.artist
+      && !favoriteSong.album) {
+      throw new BusinessError(ValidationCodeError.INSUFFICIENT_PARAMS);
+    }
+
+    const favoriteSongSaved = await FavoriteSongRepository.selectOne({
+      where: { favoriteId, userId },
+    });
+
+    if (!favoriteSongSaved) {
+      throw new BusinessError(FavoriteSongCodeError.FAVORITE_SONG_NOT_FOUND);
+    }
+
+    const favoriteSongUpdated = await FavoriteSongRepository.updateById(favoriteSongSaved.favoriteId, {
+      ...(favoriteSong.songName && { songName: favoriteSong.songName }),
+      ...(favoriteSong.artist && { artist: favoriteSong.artist }),
+      ...(favoriteSong.album && { album: favoriteSong.album }),
+    });
+
+    response = {
+      songName: favoriteSongUpdated.songName,
+      artist: favoriteSongUpdated.artist,
+      album: favoriteSongUpdated.album,
+    };
+
+    return response;
+  }
+
+  static async deleteById(favoriteId, userId) {
+    const favoriteSongSaved = await FavoriteSongRepository.selectOne({
+      where: { favoriteId, userId },
+    });
+
+    if (!favoriteSongSaved) {
+      throw new BusinessError(FavoriteSongCodeError.FAVORITE_SONG_NOT_FOUND);
+    }
+
+    await FavoriteSongRepository.deleteById(favoriteSongSaved.favoriteId);
   }
 }
