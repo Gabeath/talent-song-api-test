@@ -9,7 +9,7 @@
     "migration-generate": "npx sequelize-cli migration:generate --name",
     "undo-migration": "npx sequelize-cli db:migrate:undo --name",
     "seed": "npx sequelize-cli db:seed:all",
-    "start": "node src/app/index.js"
+    "start": "npx babel-node src/app/index.js"
   },
   "repository": {
     "type": "git",
