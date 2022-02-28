@@ -28,7 +28,12 @@ const auth = () => async (req, res, next) => {
       throw new UnauthorizedError();
     }
 
-    const payload = verifyToken(token);
+    let payload;
+    try {
+      payload = verifyToken(token);
+    } catch (err) {
+      throw new UnauthorizedError();
+    }
 
     if (!payload) {
       throw new UnauthorizedError();
