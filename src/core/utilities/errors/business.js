@@ -11,3 +11,7 @@ export default class BusinessError extends ExtendableError {
 export const ValidationCodeError = {
   INVALID_ID: 'invalid_id',
 };
+
+export const UserCodeError = {
+  EMAIL_ALREADY_REGISTERED: 'email_already_registered',
+};

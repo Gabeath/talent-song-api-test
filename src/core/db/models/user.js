@@ -12,7 +12,7 @@ export default (sequelize, type) => {
     {
       tableName: 'users',
       freezeTableName: true,
-      timestamps: true,
+      timestamps: false,
     },
   );
 

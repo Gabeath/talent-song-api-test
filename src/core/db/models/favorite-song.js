@@ -15,7 +15,7 @@ export default (sequelize, type) => {
     {
       tableName: 'favorite_songs',
       freezeTableName: true,
-      timestamps: true,
+      timestamps: false,
     },
   );
 

@@ -8,7 +8,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import httpStatus from 'http-status';
 import methodOverride from 'method-override';
-import uuid from 'uuid';
+import { v4 } from 'uuid';
 
 import routes from '@controllers';
 
@@ -33,7 +33,7 @@ app.use(helmet());
 app.use(cors());
 
 app.use((req, res, next) => {
-  req.id = uuid.v4();
+  req.id = v4();
   next();
 });
 
